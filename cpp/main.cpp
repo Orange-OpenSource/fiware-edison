@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <sstream>
+#include <string.h>
 
 using namespace std;
 
@@ -13,8 +14,8 @@ using namespace std;
 
 const string FIWARE_APIKEY = "xxxxxx";
 const string FIWARE_DEVICE = "myEdison";
-const string FIWARE_SERVER = "hackathon.ttcloud.net";
-const string FIWARE_PORT = "8082";
+const string FIWARE_SERVER = "hackathon.villatolosa.com";
+const string FIWARE_PORT = "8080";
 const string url="http://"+FIWARE_SERVER+":"+FIWARE_PORT+"/iot/d?i="+FIWARE_DEVICE+"&k="+FIWARE_APIKEY;
 string body="";
 
