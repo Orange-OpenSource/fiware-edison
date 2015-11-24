@@ -7,8 +7,8 @@ var sleep = require('sleep');
 //################ FIWARE VARIABLES ################
 var FIWARE_APIKEY = 'xxxxxxx';
 var FIWARE_DEVICE = 'myEdison';
-var FIWARE_SERVER = 'hackathon.ttcloud.net';
-var FIWARE_PORT = '8082';
+var FIWARE_SERVER = 'hackathon.villatolosa.com';
+var FIWARE_PORT = 8080
 
 var MEASURES_PERIOD = 2000; // time between measures
 var measures={}; // Dictionary to persist Sensor values   
