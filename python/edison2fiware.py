@@ -8,8 +8,8 @@ import requests
 import json
 
 ################ FIWARE VARIABLES ################
-FIWARE_SERVER = "hackathon.ttcloud.net"
-FIWARE_PORT = "8082"
+FIWARE_SERVER = "hackathon.villatolosa.com"
+FIWARE_PORT = "8080"
 FIWARE_APIKEY = "xxxxxxx"
 FIWARE_DEVICE = "myEdison"
 
