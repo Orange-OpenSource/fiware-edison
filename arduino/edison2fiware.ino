@@ -5,8 +5,8 @@
   
   
   //################# WIFI DETAILS #################
-  char ssid[] = "OWDTEST";     // your network SSID (name) 
-  char pass[] = "tidowd22";    // your network password (use for WPA, or use as key for WEP)
+  char ssid[] = "xxxxxx";     // your network SSID (name) 
+  char pass[] = "xxxxxx";    // your network password (use for WPA, or use as key for WEP)
   int keyIndex = 0;            // your network key Index number (needed only for WEP)
   int status = WL_IDLE_STATUS;
   WiFiClient client;
@@ -14,8 +14,8 @@
   //################ FIWARE VARIABLES ################
   char FIWARE_APIKEY[] = "xxxxxx";
   char FIWARE_DEVICE[] = "myEdison";
-  char FIWARE_SERVER[] = "hackathon.ttcloud.net";
-  int FIWARE_PORT = 8082; 
+  char FIWARE_SERVER[] = "hackathon.villatolosa.com";
+  int FIWARE_PORT = 8080; 
   
   //################ SENSOR VARIABLES ################  
   const int numsensors = 2;
