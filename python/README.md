@@ -27,7 +27,7 @@ Then, we can install required Python libraries, as requests (used as HTTP Client
 ```
 pip install requests
 ```
-* Download edison2fiware.py file in your drive and open it with your IDE
+* Download edison2fiware.py,  file in your drive and open it with your IDE
 * Configure your FIWARE credentials
 ```
 FIWARE_APIKEY = "xxx"

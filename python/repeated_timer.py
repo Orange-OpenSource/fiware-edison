@@ -1,6 +1,6 @@
 from threading import Timer, Lock
 
-class RepeatedTimer(object):
+class repeated_timer(object):
     """
     A periodic task running in threading.Timers
     """
