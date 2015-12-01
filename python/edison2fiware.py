@@ -46,7 +46,7 @@ def read_button():
     #Read Button and save its value in the dictionary using the alias "p"
     pulseVal = str(pulse.read()>100).lower()
     oldpulseVal = measures["p"]
-    if (pulseVal != oldpulseVal):
+    if (pulseVal != oldpulseVal): # Need to send
         measures["p"] = pulseVal
         print("New button state published :" + pulseVal)
         client.publish(FIWARE_APIKEY+"/myEdison/lux", payload=pulseVal )
@@ -73,7 +73,7 @@ def on_message(client, userdata, msg):
         led.write(0)
     ack_payload = "cmdid|{0}#result|{1}".format(cmdid_id, state_wish)
     # Need to send ack to this topic "<api-key>/<device-id>/cmdexe/<cmd-name>"
-    client.publish(FIWARE_APIKEY+"/myEdison/cmd/SET", ack_payload)
+    client.publish(FIWARE_APIKEY+"/myEdison/cmdexe/SET", ack_payload)
 
 
 

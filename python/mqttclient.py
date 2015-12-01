@@ -17,11 +17,14 @@ def on_message(client, userdata, msg):
     cmd, state = payload.split('#')
     cmdid_name, cmdid_id  = cmd.split('|')
     state_cmd, state_wish = state.split('|')
-    print("cmdid = {0}, cmd = {1}, status = {3}".format(cmdid_id, state_cmd, state_wish))
-
+    print("cmdid = {0}, cmd = {1}, status = {2}".format(cmdid_id, state_cmd, state_wish))
+    if state_wish == 'on':
+        print("led.write(1)")
+    else:
+        print("led.write(0)")
     ack_payload = "cmdid|{0}#result|{1}".format(cmdid_id, state_wish)
     # Need to send ack to this topic "<api-key>/<device-id>/cmdexe/<cmd-name>"
-    client.publish(FIWARE_APIKEY+"/myEdison/cmd/SET", ack_payload)
+    client.publish(FIWARE_APIKEY+"/myEdison/cmdexe/SET", ack_payload)
 
 
 client = mqtt.Client(  )
