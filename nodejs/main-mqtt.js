@@ -39,7 +39,7 @@ client.on('message', function(topic, message, packet) {
 		var cmdID = dict["cmdid"];
 		var value = dict["myEdison@SET"];
 		led.write(value == "on" ? 1 : 0);
-		sendCommandAck("SET", cmdID, "OK");
+		sendCommandAck("SET", cmdID, value);
 	}
 });
 
