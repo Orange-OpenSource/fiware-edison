@@ -1,23 +1,26 @@
 #!/usr/bin/env python
 
-# Developed by @IndustrialIoT Team (mail:iot_support@tid.es)
+# Based on edison2fiware Developed by @IndustrialIoT Team (mail:iot_support@tid.es)
+# MQTT  by Orange Team
 
+import paho.mqtt.client as mqtt
+from repeated_timer import repeated_timer
+
+from config import *
 import mraa
 import time
 import requests
 import json
 
-################ FIWARE VARIABLES ################
-FIWARE_SERVER = "hackathon.villatolosa.com"
-FIWARE_PORT = "8080"
-FIWARE_APIKEY = "xxxxxxx"
-FIWARE_DEVICE = "myEdison"
 
 #Time between measures
 MEASURES_PERIOD = 2
+CHECK_BUTTON_PERIOD = 0.1
+client = mqtt.Client()
 
 #Setup access to analog input #0 (A0) connected to Luminosity Sensor
-luminosity = mraa.Aio(0)
+luminosity = mraa.Aio(0)#
+# luminosity = 48.89
 
 #Setup access to analog input #1 (A1) connected to Button Sensor
 pulse = mraa.Aio(1)
@@ -27,66 +30,80 @@ led = mraa.Gpio(6)
 led.dir(mraa.DIR_OUT)
 
 #Setup dictionary to include measures
-measures = {}
+measures = {'p':'-1','l':'0'}
 
-def readMeasures():
-
+def read_lux():
     #Read Luminosity and save its value in the dictionary using the alias "l"
     lumVal = str(luminosity.read())
+#     lumVal = str(luminosity)
     measures["l"] = lumVal
+    print("Message published :lux=" + lumVal)
+    client.publish(FIWARE_APIKEY+"/myEdison/lux", payload=lumVal )
 
+
+def read_button():
     #Read Button and save its value in the dictionary using the alias "p"
     pulseVal = str(pulse.read()>100).lower()
-    measures["p"] = pulseVal
+    oldpulseVal = measures["p"]
+    if (pulseVal != oldpulseVal): # Need to send
+        measures["p"] = pulseVal
+        print("New button state published :" + pulseVal)
+        client.publish(FIWARE_APIKEY+"/myEdison/button", payload=pulseVal )
 
-def postMeasures():
 
-    first = True
-    payload = ""
-    received_commands=[]
-    #Parse chain of commands   
-    for key,value in measures.items():
-        #Measures payload format is alias1|value1#alias2|value2#....
-        #Add measures separator "#" to the request payload only when it is not the first measure
-        if(first):
-            first = False
-        else:
-            payload = payload + "#"
+# The callback called when the client receives a CONNACK response from the server.
+def on_connect(client, userdata, rc):
+    print( "Connected with result code " + str( rc ) )
+    # Subscribing in on_connect() means that if we lose the connection and
+    # reconnect then subscriptions will be renewed.
+    client.subscribe( FIWARE_APIKEY+"/myEdison/cmd/SET" )
 
-        payload = payload + key + "|" + value
 
-    print('Sending measures to FIWARE IoT Stack '+payload)
+# The callback called when a message is received from the server.
+def on_message(client, userdata, msg):
+    payload = str( msg.payload )
+    cmd, state = payload.split('#')
+    cmdid_name, cmdid_id  = cmd.split('|')
+    state_cmd, state_wish = state.split('|')
+    print("cmdid = {0}, cmd = {1}, status = {2}".format(cmdid_id, state_cmd, state_wish))
+    if state_wish == 'on':
+        print( "led switched to on")
+        led.write(1)
+    else:
+        print( "led switched to off")
+        led.write(0)
+    ack_payload = "cmdid|{0}#result|{1}".format(cmdid_id, state_wish)
+    # Need to send ack to this topic "<api-key>/<device-id>/cmdexe/<cmd-name>"
+    client.publish(FIWARE_APIKEY+"/myEdison/cmdexe/SET", ack_payload)
 
-    url = "http://" + FIWARE_SERVER+ ":" +FIWARE_PORT+ "/iot/d"
-    querystring = {"i": FIWARE_DEVICE, "k": FIWARE_APIKEY, "getCmd":"1"}
-    r = requests.post(url, data=payload, params=querystring)
-    print "Response Status Code: "+str(r.status_code)
-    if r.text != "":
-        response = r.text
-        print response
-        received_commands = response.split("#")
-        received_commands.reverse()
-        while (received_commands!=[]):
-            command_name, command_value = received_commands.pop().split("@")[1].split("|")
-            print command_value
-            if command_name == "ledr":
-                led.write(1) if command_value == "on" else led.write(0)
-                sendAck()
-            time.sleep(1)
-            
-    
-def sendAck():
-   
-    #Not execute old commands again
-    url = "http://" + FIWARE_SERVER+ ":" +FIWARE_PORT+ "/iot/d"
-    querystring = {"i":FIWARE_DEVICE,"k":FIWARE_APIKEY}
 
-    payload = FIWARE_DEVICE+"@ledr|OK"
-    response = requests.request("POST", url, data=payload, params=querystring)
 
-## MAIN ##
-while True:
-    readMeasures()
-    postMeasures()
-    measures.clear()
-    time.sleep(MEASURES_PERIOD)
+def on_publish(client, userdata, mid):
+    print("Message id is "+str(mid))
+
+
+def main():
+    ## MAIN ##
+    try:
+        client.on_connect = on_connect # Method called each time we reconnect (contains subscription to cmd channel)
+        client.on_message = on_message # Callback when a command is received from subscription channel
+        client.on_publish = on_publish # Callback when publish is ok
+        client.username_pw_set(FIWARE_APIKEY)
+        client.connect( FIWARE_SERVER, FIWARE_PORT, FIWARE_TIMEOUT )
+
+        lux_manager = repeated_timer(MEASURES_PERIOD, read_lux)             # Thread that poll lux sensor
+        button_manager = repeated_timer(CHECK_BUTTON_PERIOD, read_button)   # Thread that poll button sensor
+        lux_manager.start()
+        button_manager.start()
+        client.loop_forever() # Infinite Loop to receive cmd from server
+
+    except :
+        lux_manager.stop()
+        button_manager.stop()
+        client.disconnect()
+
+if __name__ == '__main__':
+    main()
+
+
+
