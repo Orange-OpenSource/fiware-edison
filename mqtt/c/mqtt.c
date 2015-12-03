@@ -6,9 +6,9 @@
 #include "mraa/aio.h"
 
 #define FIWARE_SERVER "hackathon.villatolosa.com"
-#define FIWARE_APIKEY "09XXYXANSMAHZLVCPZVJ"
+#define FIWARE_APIKEY "xxxxxxxxxxx"
 #define FIWARE_DEVICE "myEdison"
-#define CLIENTID "myEdison-c"
+#define CLIENTID "xxxxxxx"
 #define PAYLOAD "112"
 #define QOS 0
 #define TIMEOUT 10000L
