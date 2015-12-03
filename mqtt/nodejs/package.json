@@ -1,0 +1,17 @@
+{
+  "name": "edison-ul",
+  "version": "1.0.0",
+  "description": "package pour le hackathon",
+  "main": "main.js",
+  "dependencies": {
+    "mqtt": "^1.5.0",
+    "request": "^2.67.0",
+    "sleep": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
