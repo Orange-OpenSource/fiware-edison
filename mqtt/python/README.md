@@ -23,9 +23,9 @@ And install PIP
 ```
 opkg install python-pip
 ```
-Then, we can install required Python libraries, as requests (used as HTTP Client in our example)
+Then, we can install required Python libraries
 ```
-pip install requests
+pip install 
 ```
 * Download edison2fiware.py,  file in your drive and open it with your IDE
 * Configure your FIWARE credentials
@@ -40,5 +40,3 @@ root@edison:/home/pythonajln# python edison2fiware.py
 ```
 * That's it! Your Edison is reading sensors and its data is updated in the FIWARE IoT Stack!
 * Next steps: Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](https://github.com/telefonicaid/fiware-edison/blob/develop/README.md#accesing-your-fiware-iot-stack-data)
-
-An mqtt version is available (see the sample : 

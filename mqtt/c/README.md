@@ -3,7 +3,13 @@
 ssh root@your_edison_ip
 ```
 
-* For launch your programm 
+* Configure your FIWARE credentials:
+```
+#define FIWARE_APIKEY "xxxxxxxxxxx"
+#define CLIENTID "xxxxxxx"
+```
+
+* Run your programm :  
 ```
 make && ./mqtt
 ``` 
