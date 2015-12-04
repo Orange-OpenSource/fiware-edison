@@ -40,3 +40,9 @@ root@edison:/home/pythonajln# python edison2fiware.py
 ```
 * That's it! Your Edison is reading sensors and its data is updated in the FIWARE IoT Stack!
 * Next steps: Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](https://github.com/telefonicaid/fiware-edison/blob/develop/README.md#accesing-your-fiware-iot-stack-data)
+
+if you have the following error : No module name contextlib do : 
+```
+opkg install python-misc
+```
+For more informations see [here](http://stackoverflow.com/questions/5520515/python-no-module-named-contextlib)
