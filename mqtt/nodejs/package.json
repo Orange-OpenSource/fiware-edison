@@ -1,7 +1,7 @@
 {
-  "name": "edison-ul",
+  "name": "edison-mqtt",
   "version": "1.0.0",
-  "description": "package pour le hackathon",
+  "description": "package used for run the mqtt sample",
   "main": "main.js",
   "dependencies": {
     "mqtt": "^1.5.0",
