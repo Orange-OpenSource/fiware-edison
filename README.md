@@ -1,7 +1,7 @@
 # Edison 2 FIWARE IoT Stack Integration
 
 
-## Introduction
+## Introduction
 This repository holds examples about how to persist your Intel Edison sensors data into FIWARE IoT Stack cloud service.
 
 Then, it will show you how to access these data using FIWARE NGSI standard APIs and its multiple connectors with external tools as Freeboard or CartoDB.
@@ -25,17 +25,38 @@ and show both values in several Freeboard web widgets. Please make sure that you
 
 There is a huge amount of sensors and actuators in the Grove Starter Kit, so once you are familiar with the example, connect more and get it data in the cloud too!
 
-### Arduino IDE
-If you are an Arduino lover, [this example](https://github.com/telefonicaid/fiware-edison/tree/develop/arduino) will be straightforward for you.
+The IoT Agent supports multiples protocols (MQTT, UL20, CoAP, Sigfox, Lora, etc...) 
+Samples in different languages are available for two of them : MQTT and UL20
 
-### Intel XDK IDE (Node.js)
-If you prefer programming in Node, [this is your tutorial](https://github.com/telefonicaid/fiware-edison/tree/develop/nodejs)
+###ul20
 
-### Eclipse (C++)
-For those who priorise optimal coding, go [here](https://github.com/telefonicaid/fiware-edison/tree/develop/cpp)
+#### Arduino
+If you are an Arduino lover, [this example](https://github.com/Orange-OpenSource/fiware-edison/tree/master/ul20/arduino) will be straightforward for you.
 
-### Python
-Even Python is not given as an option to code your Edison in the official Intel Getting Started Guide, we know you love Python (we too!), so we have also created this [Python tutorial](https://github.com/telefonicaid/fiware-edison/tree/develop/python)
+#### Node.js
+If you prefer programming in Node, [this is your tutorial](https://github.com/Orange-OpenSource/fiware-edison/tree/master/ul20/nodejs)
+
+#### C++
+For those who priorise optimal coding, go [here](https://github.com/Orange-OpenSource/fiware-edison/tree/master/ul20/cpp)
+
+#### Python
+Even Python is not given as an option to code your Edison in the official Intel Getting Started Guide, we know you love Python (we too!), so we have also created this [Python tutorial](https://github.com/Orange-OpenSource/fiware-edison/tree/master/ul20/python)
+
+
+###mqtt
+
+#### Arduino
+If you are an Arduino lover, [this example](https://github.com/Orange-OpenSource/fiware-edison/tree/master/mqtt/arduino) will be straightforward for you.
+
+#### Node.js
+If you prefer programming in Node, [this is your tutorial](https://github.com/Orange-OpenSource/fiware-edison/tree/master/mqtt/nodejs)
+
+#### C
+For those who priorise optimal coding, go [here](https://github.com/Orange-OpenSource/fiware-edison/tree/master/mqtt/c)
+
+#### Python
+Even Python is not given as an option to code your Edison in the official Intel Getting Started Guide, we know you love Python (we too!), so we have also created this [Python tutorial](https://github.com/Orange-OpenSource/fiware-edison/tree/master/mqtt/python)
+
 
 ## Using FIWARE IoT Stack
 You have your Edison sensors data up there in the cloud in FIWARE IoT Stack. So what?
@@ -64,7 +85,7 @@ If you just need a dashboard (like [this one](https://freeboard.io/board/0cYCHY)
 Please, read our 
 [FIWARE Orion Datasource Freedboard Tutorial](http://fiware-iot-stack.readthedocs.org/en/latest/quickguide/index.html#step-4-show-in-a-dashboard) if you have any trouble.
 
-### Step #4 : Use FIWARE NGSI APIs
+#### Step #4 : Use FIWARE NGSI APIs
 If you want to build your own app, with your own code and UX, you are looking for an API, right?. 
 
 Integrating external apps is done via [NGSI APIs](https://forge.fiware.org/plugins/mediawiki/wiki/fiware/index.php?title=Publish/Subscribe_Broker_-_Orion_Context_Broker_-_User_and_Programmers_Guide). [Here](http://fiware-iot-stack.readthedocs.org/en/latest/quickguide/index.html#step-3-get-data)
