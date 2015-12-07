@@ -35,6 +35,8 @@ int rc;
 mraa_gpio_context gpio;
 int oldPulse = UNKNOWN_STATE;
 
+
+// MQTT  by Orange Team
 int main(int argc, char * argv[]) 
 {
 	gpio = mraa_gpio_init(6);

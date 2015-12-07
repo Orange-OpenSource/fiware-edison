@@ -1,3 +1,6 @@
+// Based on edison2fiware Developed by @IndustrialIoT Team (mail:iot_support@tid.es)
+// MQTT  by Orange Team
+
 // Libraries
 #include <SPI.h> 
 #include <WiFi.h> 

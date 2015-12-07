@@ -1,5 +1,8 @@
 "use strict";
 
+// Based on main.js Developed by @IndustrialIoT Team (mail:iot_support@tid.es)
+// MQTT  by Orange Team
+
 // Libraries 
 var mraa = require('mraa'); //require mraa
 var request = require("request");
