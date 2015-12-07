@@ -12,7 +12,7 @@ If you are new with Intel Edison, we recommend you going first to the Intel Edis
 ### What is FIWARE IoT Stack?
 [FIWARE](https://www.fiware.org/) is an open initiative aiming to create a sustainable ecosystem to grasp the opportunities that will emerge with the new wave of digitalization caused by the integration of recent Internet technologies.
 
-This FIWARE IoT Stack is also available for independent developers and startups, and will be used in this tutorial to persist your Edison data in the cloud. You can go to its [ReadTheDocs](http://hackthon-emtech.rtfd.org) to get familiar with it. 
+This FIWARE IoT Stack is also available for independent developers and startups, and will be used in this tutorial to persist your Edison data in the cloud. You can go to its [ReadTheDocs](http://emtech-hackathon.rtfd.org) to get familiar with it. 
 
 You can [contact us](mailto:fiware.d4m@orange.com) and we will give you the steps to get access.
 
