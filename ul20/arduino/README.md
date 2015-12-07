@@ -1,5 +1,5 @@
 In this example we will connect Light and Button sensors data to FIWARE IoT Stack using Arduino IDE. If you are new working with Edison and Arduino IDE, we recommend you going [here](https://software.intel.com/es-es/get-started-arduino-install) first.
-* Download edison2fiware.ino sketch file in your drive and open it with Arduino IDE (File > Open)
+* Download main.ino sketch file in your drive and open it with Arduino IDE (File > Open)
 * Setup your WIFI SSID and password:
 ```
 char ssid[] = "";

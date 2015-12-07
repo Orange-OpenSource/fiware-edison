@@ -20,3 +20,8 @@ FIWARE_APIKEY = "xxx"
 * Upload the file to your Edison clicking on the "hammer" button.
 * Once it is uploaded click on the "play" button, so the party will start! Your Edison is reading sensors and its data is updated in the FIWARE IoT Stack!
 * Next steps: Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](https://github.com/telefonicaid/fiware-edison/blob/develop/README.md#accesing-your-fiware-iot-stack-data)
+
+* Run your programm :
+```
+node main-mqtt.js
+```
