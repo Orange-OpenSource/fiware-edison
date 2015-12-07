@@ -27,7 +27,7 @@ Then, we can install required Python libraries
 ```
 pip install requests
 ```
-* Download edison2fiware.py,  file in your drive and open it with your IDE
+* Download mainMqtt.py,  file in your drive and open it with your IDE
 * Configure your FIWARE credentials
 ```
 FIWARE_APIKEY = "xxx"
@@ -36,10 +36,10 @@ FIWARE_APIKEY = "xxx"
 * Please make sure that you've already plugged light sensor into A0 analog input and button sensor into A1.
 * Execute! (using the same SSH connection used in Step 2)
 ```
-root@edison:/home/pythonajln# python edison2fiware.py
+root@edison:/home/pythonajln# python mainMqtt.py
 ```
 * That's it! Your Edison is reading sensors and its data is updated in the FIWARE IoT Stack!
-* Next steps: Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](https://github.com/telefonicaid/fiware-edison/blob/develop/README.md#accesing-your-fiware-iot-stack-data)
+* Next steps: Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](http://emtech-hackathon.readthedocs.org/en/latest/quickguide/index.html#step-4-show-in-a-dashboard)
 
 if you have the following error : No module name contextlib do : 
 ```

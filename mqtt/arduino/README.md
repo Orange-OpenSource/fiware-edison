@@ -9,10 +9,13 @@ char pass[] = "";
 ```
 char FIWARE_APIKEY = XXXXXXXXXX
 ```
+
+* Install the Mqtt library used for this sample : Sktech > Include library > Manage libraries. Search and install PubSubClient.
+
 * Plug Light Sensor into A0 analog input and Button Sensor into A1. 
 * Once you have done the configuration steps, upload the sketch to your Edison (connected using the middle USB port). 
 * That's it! Your Edison is reading sensors and its data is updated in the FIWARE IoT Stack!
-* Next steps:Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](https://github.com/telefonicaid/fiware-edison/blob/develop/README.md#accesing-your-fiware-iot-stack-data)
+* Next steps:Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](http://emtech-hackathon.readthedocs.org/en/latest/quickguide/index.html#step-4-show-in-a-dashboard)
 
 * Stop an arduino programm
 ```
