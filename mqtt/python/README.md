@@ -27,14 +27,14 @@ Then, we can install required Python libraries
 ```
 pip install requests
 ```
-* Download mainMqtt.py,  file in your drive and open it with your IDE
-* Configure your FIWARE credentials
+* Download config.py, mainMqtt.py and repeated_timer.py 
+* Configure your FIWARE credentials in config.py
 ```
 FIWARE_APIKEY = "xxx"
 ```
-* Upload the file to your Edison via SFTP (ie, using Filezilla) setting your Edison IP & user/pass (Port 22).
+* Upload these files to your Edison via SFTP (ie, using Filezilla) setting your Edison IP & user/pass (Port 22).
 * Please make sure that you've already plugged light sensor into A0 analog input and button sensor into A1.
-* Execute! (using the same SSH connection used in Step 2)
+* Execute the mainMqtt.py ! (using the same SSH connection used in Step 2)
 ```
 root@edison:/home/pythonajln# python mainMqtt.py
 ```
