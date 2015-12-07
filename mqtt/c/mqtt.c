@@ -8,7 +8,6 @@
 #define FIWARE_SERVER "hackathon.villatolosa.com"
 #define FIWARE_APIKEY "xxxxxxxxxxx"
 #define FIWARE_DEVICE "myEdison"
-#define CLIENTID "xxxxxxx"
 #define PAYLOAD "112"
 #define QOS 0
 #define TIMEOUT 10000L
@@ -42,7 +41,7 @@ int main(int argc, char * argv[])
 	gpio = mraa_gpio_init(6);
 	int i = 0;
 
-	MQTTClient_create( & client, FIWARE_SERVER, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
+	MQTTClient_create( & client, FIWARE_SERVER, FIWARE_APIKEY, MQTTCLIENT_PERSISTENCE_NONE, NULL);
 	conn_opts.keepAliveInterval = 20;
 	conn_opts.cleansession = 1;
 	conn_opts.username = FIWARE_APIKEY;
