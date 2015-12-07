@@ -190,7 +190,7 @@ void connectToMqttAndSubscribeToSetCommand() {
   while (!client.connected()) {
     Serial.println("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("myEdison-arduino", FIWARE_APIKEY, NULL)) {
+    if (client.connect(FIWARE_APIKEY, FIWARE_APIKEY, NULL)) {
       Serial.println("connected");
       // Subscribe during the first connection and each reconnection 
       subscribeToCommandTopic();
