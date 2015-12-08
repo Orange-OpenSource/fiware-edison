@@ -30,7 +30,7 @@ pip install requests
 * Download config.py, mainMqtt.py and repeated_timer.py 
 * Configure your FIWARE credentials in config.py
 ```
-FIWARE_APIKEY = "xxx"
+TOKEN = "xxx"
 ```
 * Upload these files to your Edison via SFTP (ie, using Filezilla) setting your Edison IP & user/pass (Port 22).
 * Please make sure that you've already plugged light sensor into A0 analog input and button sensor into A1.
