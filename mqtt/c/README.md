@@ -8,7 +8,6 @@ ssh root@your_edison_ip
 * Configure your FIWARE credentials:
 ```
 #define TOKEN "xxxxxxxxxxx"
-#define CLIENTID "xxxxxxx"
 ```
 
 * Run your programm :  
