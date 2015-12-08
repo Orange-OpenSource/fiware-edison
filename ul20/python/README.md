@@ -1,6 +1,6 @@
 Edison has a Linux inside (Yocto), and [mraa library](http://iotdk.intel.com/docs/master/mraa/) give us access to its Analogic and Digital PINs from Python. Then we can code and run Python into our Edison (yeah!).
 We (still) don't have IDE plugins to directly code and upload to your device, but it is quite easy doing so by just using your favourite Python IDE (ie, PyCharm), [FileZilla](http://sourceforge.net/projects/filezilla/) (or any other SFTP client) and SSH. Let's go! step by step...
-* If you haven't done it yet, [setup a serial terminal](https://software.intel.com/es-es/get-started-edison-osx-step3) to configure your root pass and [configure your WIFI and get your Edison IP](https://software.intel.com/get-started-edison-osx-step4)
+* If you haven't done it yet, [setup a serial terminal](https://software.intel.com/get-started-edison-osx-step3) to configure your root pass and [configure your WIFI and get your Edison IP](https://software.intel.com/get-started-edison-osx-step4)
 * Access your Edison via SSH (your laptop should be in the same WIFI network your Edison is)
 ```
 ssh root@your_edison_ip
@@ -39,7 +39,7 @@ FIWARE_APIKEY = "xxx"
 root@edison:/home/pythonajln# python main.py
 ```
 * That's it! Your Edison is reading sensors and its data is updated in the FIWARE IoT Stack!
-* Next steps: Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](https://github.com/telefonicaid/fiware-edison/blob/develop/README.md#accesing-your-fiware-iot-stack-data)
+* Next steps: Read the data from you application using NGSI APIs or show it in a cool Freeboard as explained in [Visualizing your FIWARE IoT Stack Data](http://emtech-hackathon.readthedocs.org/en/latest/quickguide/index.html#step-4-show-in-a-dashboard)
 
 if you have the following error : No module name contextlib do : 
 ```
