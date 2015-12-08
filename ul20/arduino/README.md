@@ -7,7 +7,7 @@ char pass[] = "";
 ```
 * Write your FIWARE IoT Stack credentials:
 ```
-char FIWARE_APIKEY = XXXXXXXXXX
+char TOKEN = XXXXXXXXXX
 ```
 * Plug Light Sensor into A0 analog input and Button Sensor into A1. 
 * Once you have done the configuration steps, upload the sketch to your Edison (connected using the middle USB port). 

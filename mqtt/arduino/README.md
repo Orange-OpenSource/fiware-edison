@@ -7,7 +7,7 @@ char pass[] = "";
 ```
 * Write your FIWARE IoT Stack credentials:
 ```
-char FIWARE_APIKEY = XXXXXXXXXX
+char TOKEN = XXXXXXXXXX
 ```
 
 * Install the Mqtt library used for this sample : Sktech > Include library > Manage libraries. Search and install PubSubClient.

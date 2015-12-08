@@ -13,7 +13,7 @@ Right click on the project and select properties. Then navigate to C/C++ Build -
 ```
 * Configure your FIWARE credentials:
 ```
-string FIWARE_APIKEY = "xxxxx";
+string TOKEN = "xxxxx";
 ```
 * Choose your Edison for the boards available list. If your device is not displayed in the list, select "Enable broadcast target search".
 * Please make sure that you've already plugged  the light sensor into A0 analog input and the button sensor into A1.

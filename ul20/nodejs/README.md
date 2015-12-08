@@ -13,7 +13,7 @@ npm install
 * Create a new project in XDK, and replace its main.js file by the one contained in this tutorial
 * Configure your FIWARE credentials
 ```
-FIWARE_APIKEY = "xxx"
+TOKEN = "xxx"
 ```
 * Select your device from the IoT devices list that appears on the bottom-left part of the screen. If you can't find it, just select "Add Manual Connection" and fill the blanks with your Edison ip address, user name and password.
 * Please make sure that you've already plugged light sensor into A0 analog input and button sensor into A1.

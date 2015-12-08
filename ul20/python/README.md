@@ -30,7 +30,7 @@ pip install requests
 * Download main.py,  file in your drive and open it with your IDE
 * Configure your FIWARE credentials
 ```
-FIWARE_APIKEY = "xxx"
+TOKEN = "xxx"
 ```
 * Upload the file to your Edison via SFTP (ie, using Filezilla) setting your Edison IP & user/pass (Port 22).
 * Please make sure that you've already plugged light sensor into A0 analog input and button sensor into A1.

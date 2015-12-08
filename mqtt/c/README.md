@@ -7,7 +7,7 @@ ssh root@your_edison_ip
 
 * Configure your FIWARE credentials:
 ```
-#define FIWARE_APIKEY "xxxxxxxxxxx"
+#define TOKEN "xxxxxxxxxxx"
 #define CLIENTID "xxxxxxx"
 ```
 
