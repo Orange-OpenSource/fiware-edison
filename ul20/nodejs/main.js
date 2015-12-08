@@ -8,7 +8,7 @@ var sleep = require('sleep');
 var TOKEN = 'xxxxxxx';
 var FIWARE_DEVICE = 'myEdison';
 var FIWARE_SERVER = 'hackathon.villatolosa.com';
-var FIWARE_PORT = 8080
+var FIWARE_PORT = 80
 
 var MEASURES_PERIOD = 2000; // time between measures
 var measures={}; // Dictionary to persist Sensor values   
@@ -61,7 +61,7 @@ function postMeasures(){
 
     var options = { 
         method: 'POST',
-        url: 'http://'+FIWARE_SERVER+':'+FIWARE_PORT+'/iot/d',
+        url: 'http://'+FIWARE_SERVER+':'+FIWARE_PORT+'/ul/iot/d',
         qs: { i: FIWARE_DEVICE, k: TOKEN, getCmd:1 },
         body: body 
     };
@@ -93,7 +93,7 @@ function sendAck(){
     // Not execute old commands again
     var options_ack = { 
     method: 'POST',
-    url: 'http://'+FIWARE_SERVER+':'+FIWARE_PORT+'/iot/d',
+    url: 'http://'+FIWARE_SERVER+':'+FIWARE_PORT+'/ul/iot/d',
     qs: { i: FIWARE_DEVICE, k: TOKEN},
     body: FIWARE_DEVICE+"@ledr|OK", 
     }; 

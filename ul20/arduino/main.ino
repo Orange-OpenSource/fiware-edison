@@ -15,7 +15,7 @@
   char TOKEN[] = "xxxxxx";
   char FIWARE_DEVICE[] = "myEdison";
   char FIWARE_SERVER[] = "hackathon.villatolosa.com";
-  int FIWARE_PORT = 8080; 
+  int FIWARE_PORT = 80; 
   
   //################ SENSOR VARIABLES ################  
   const int numsensors = 2;
@@ -114,7 +114,7 @@
       }
       
     // Make a HTTP request:
-    client.println("POST /iot/d?i="+String(FIWARE_DEVICE)+"&k="+String(TOKEN)+"&getCmd=1 HTTP/1.1");    
+    client.println("POST /ul/iot/d?i="+String(FIWARE_DEVICE)+"&k="+String(TOKEN)+"&getCmd=1 HTTP/1.1");    
     client.println("Host:"+String(FIWARE_SERVER)+":"+String(FIWARE_PORT));
     client.println("Content-Length: "+String(body.length()));
     client.println("Connection: close");
@@ -179,7 +179,7 @@
   void sendAck(){
     String ack_payload= "";
     ack_payload= String(FIWARE_DEVICE)+"@ledr|OK";
-    client.println("POST /iot/d?i="+String(FIWARE_DEVICE)+"&k="+String(TOKEN)+" HTTP/1.1");    
+    client.println("POST /ul/iot/d?i="+String(FIWARE_DEVICE)+"&k="+String(TOKEN)+" HTTP/1.1");    
     client.println("Host:"+String(FIWARE_SERVER)+":"+String(FIWARE_PORT));
     client.println("Content-Length: "+String(ack_payload.length()));
     client.println("Connection: close");

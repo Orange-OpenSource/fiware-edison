@@ -9,7 +9,7 @@ import json
 
 ################ FIWARE VARIABLES ################
 FIWARE_SERVER = "hackathon.villatolosa.com"
-FIWARE_PORT = "8080"
+FIWARE_PORT = "80"
 TOKEN = "xxxxxxx"
 FIWARE_DEVICE = "myEdison"
 
@@ -57,7 +57,7 @@ def postMeasures():
 
     print('Sending measures to FIWARE IoT Stack '+payload)
 
-    url = "http://" + FIWARE_SERVER+ ":" +FIWARE_PORT+ "/iot/d"
+    url = "http://" + FIWARE_SERVER+ ":" +FIWARE_PORT+ "/ul/iot/d"
     querystring = {"i": FIWARE_DEVICE, "k": TOKEN, "getCmd":"1"}
     r = requests.post(url, data=payload, params=querystring)
     print "Response Status Code: "+str(r.status_code)
@@ -78,7 +78,7 @@ def postMeasures():
 def sendAck():
    
     #Not execute old commands again
-    url = "http://" + FIWARE_SERVER+ ":" +FIWARE_PORT+ "/iot/d"
+    url = "http://" + FIWARE_SERVER+ ":" +FIWARE_PORT+ "/ul/iot/d"
     querystring = {"i":FIWARE_DEVICE,"k":TOKEN}
 
     payload = FIWARE_DEVICE+"@ledr|OK"

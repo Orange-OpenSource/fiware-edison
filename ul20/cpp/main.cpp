@@ -15,8 +15,8 @@ using namespace std;
 const string TOKEN = "xxxxxx";
 const string FIWARE_DEVICE = "myEdison";
 const string FIWARE_SERVER = "hackathon.villatolosa.com";
-const string FIWARE_PORT = "8080";
-const string url="http://"+FIWARE_SERVER+":"+FIWARE_PORT+"/iot/d?i="+FIWARE_DEVICE+"&k="+TOKEN;
+const string FIWARE_PORT = "80";
+const string url="http://"+FIWARE_SERVER+":"+FIWARE_PORT+"/ul/iot/d?i="+FIWARE_DEVICE+"&k="+TOKEN;
 string body="";
 
 
