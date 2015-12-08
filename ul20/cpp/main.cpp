@@ -12,11 +12,11 @@ using namespace std;
 
 //################ FIWARE VARIABLES ################
 
-const string FIWARE_APIKEY = "xxxxxx";
+const string TOKEN = "xxxxxx";
 const string FIWARE_DEVICE = "myEdison";
 const string FIWARE_SERVER = "hackathon.villatolosa.com";
 const string FIWARE_PORT = "8080";
-const string url="http://"+FIWARE_SERVER+":"+FIWARE_PORT+"/iot/d?i="+FIWARE_DEVICE+"&k="+FIWARE_APIKEY;
+const string url="http://"+FIWARE_SERVER+":"+FIWARE_PORT+"/iot/d?i="+FIWARE_DEVICE+"&k="+TOKEN;
 string body="";
 
 

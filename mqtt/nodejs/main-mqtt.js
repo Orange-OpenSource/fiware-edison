@@ -10,8 +10,8 @@ var sleep = require('sleep');
 var mqtt = require ('mqtt');
 
 // Fiware variables 
-var FIWARE_APIKEY = 'xxxxxxx';
-var FIWARE_DEVICE = 'myEdison';
+var TOKEN = 'xxxxxxx';
+var FIWARE_DEVICE = 'myEdison-mqtt';
 var FIWARE_SERVER = 'hackathon.villatolosa.com';
 
 var PULSE_MEASURE_PERIOD = 1000; // time between pulse measures 
@@ -25,7 +25,7 @@ var analogPin1 = new mraa.Aio(1); //setup access to analog input #1 (A1) connect
 var led = new mraa.Gpio(6);
 led.dir(mraa.DIR_OUT); 
 
-var client = mqtt.connect('mqtt://' + FIWARE_SERVER, {username: FIWARE_APIKEY});
+var client = mqtt.connect('mqtt://' + FIWARE_SERVER, {username: TOKEN});
 
 var oldPulse = null; // By default
 
@@ -37,10 +37,10 @@ client.on('connect', function() { // When connected
 
 client.on('message', function(topic, message, packet) {
 	console.log("Received '" + message + "' on '" + topic + "'");
-	if (topic === FIWARE_APIKEY + "/myEdison/cmd/SET") {	 
+	if (topic === TOKEN + "/" + FIWARE_DEVICE + "/cmd/SET") {	 
 		var dict = deserializeUL(message.toString());
 		var cmdID = dict["cmdid"];
-		var value = dict["myEdison@SET"];
+		var value = dict[FIWARE_DEVICE + "@SET"];
 		led.write(value == "on" ? 1 : 0);
 		sendCommandAck("SET", cmdID, value);
 	}
@@ -53,7 +53,7 @@ function readAndPublishLuminisoityMeasure(){
 	
     console.log("Lum value : " + lum + "\n");
 	// Verify that the publisher has been successful
-	client.publish(FIWARE_APIKEY + "/myEdison/lux", "" + lum, function(err, granted) {
+	client.publish(TOKEN + "/" + FIWARE_DEVICE + "/lux", "" + lum, function(err, granted) {
 		if (err != null) {
 			console.log("publish luminosity : error", err);
 		}
@@ -72,7 +72,7 @@ function readAndPublishButtonSensorState() {
 	if (pulse !== oldPulse) {
 		console.log("Pulse value : " + pulse + "\n");
 		// Verify that the publisher has been successful 
-		client.publish(FIWARE_APIKEY + "/myEdison/button" , pulse ? "true" : "false", function(err, granted) {
+		client.publish(TOKEN + "/" + FIWARE_DEVICE + "/button" , pulse ? "true" : "false", function(err, granted) {
 			if (err != null) {
 				console.log("publish button : error", err);
 			}
@@ -86,7 +86,7 @@ function readAndPublishButtonSensorState() {
 
 function subscribeToCommandTopic() {
 	// Subscribe to the command topic
-	client.subscribe(FIWARE_APIKEY + "/myEdison/cmd/SET", function(err, granted) {
+	client.subscribe(TOKEN + "/" + FIWARE_DEVICE + "/cmd/SET", function(err, granted) {
 		if (err != null) {
 			console.log("subscribe to command topic : error", err);
 		}
@@ -97,7 +97,7 @@ function sendCommandAck(cmd, cmdID, result) {
 	// publish 
 	var payload = serializeUL({"cmdid" : cmdID, "result" : result});
 	console.log("payload : " + payload);
-	client.publish(FIWARE_APIKEY + "/" + FIWARE_DEVICE + "/cmdexe/" + cmd, payload, function(err, granted) {
+	client.publish(TOKEN + "/" + FIWARE_DEVICE + "/cmdexe/" + cmd, payload, function(err, granted) {
 			if (err != null) {
 				console.log("publish button : error", err);
 			}

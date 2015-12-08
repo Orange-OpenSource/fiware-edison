@@ -6,8 +6,8 @@
 #include "mraa/aio.h"
 
 #define FIWARE_SERVER "hackathon.villatolosa.com"
-#define FIWARE_APIKEY "xxxxxxxxxxx"
-#define FIWARE_DEVICE "myEdison"
+#define TOKEN "xxxxxxxxxxx"
+#define FIWARE_DEVICE "myEdison-mqtt"
 #define PAYLOAD "112"
 #define QOS 0
 #define TIMEOUT 10000L
@@ -21,9 +21,9 @@ void sendCommandAck(char * cmd, char * cmdidValue, char * result);
 void delivered(void * context, MQTTClient_deliveryToken dt);
 void connlost(void * context, char * cause);
 
-char TOPIC_LUM[] = FIWARE_APIKEY "/myEdison/lux";
-char TOPIC_BUTTON[] = FIWARE_APIKEY "/myEdison/button";
-char TOPIC_SUBSCRIBE[] = FIWARE_APIKEY "/myEdison/cmd/SET";
+char TOPIC_LUM[] = TOKEN "/" FIWARE_DEVICE "/lux";
+char TOPIC_BUTTON[] = TOKEN "/" FIWARE_DEVICE "/button";
+char TOPIC_SUBSCRIBE[] = TOKEN "/" FIWARE_DEVICE "/cmd/SET";
 
 MQTTClient client;
 MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
@@ -41,10 +41,10 @@ int main(int argc, char * argv[])
 	gpio = mraa_gpio_init(6);
 	int i = 0;
 
-	MQTTClient_create( & client, FIWARE_SERVER, FIWARE_APIKEY, MQTTCLIENT_PERSISTENCE_NONE, NULL);
+	MQTTClient_create( & client, FIWARE_SERVER, TOKEN, MQTTCLIENT_PERSISTENCE_NONE, NULL);
 	conn_opts.keepAliveInterval = 20;
 	conn_opts.cleansession = 1;
-	conn_opts.username = FIWARE_APIKEY;
+	conn_opts.username = TOKEN;
 
 	pubmsg.qos = QOS;
 	pubmsg.retained = 0;
@@ -172,7 +172,7 @@ void sendCommandAck(char * cmd, char * cmdidValue, char * result)
 {
 	char topic[400];
 	memset(topic, 0, 400); // clean
-	strcat(topic, FIWARE_APIKEY);
+	strcat(topic, TOKEN);
 	strcat(topic, "/");
 	strcat(topic, FIWARE_DEVICE);
 	strcat(topic, "/cmdexe/");

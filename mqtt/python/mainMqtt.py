@@ -38,7 +38,7 @@ def read_lux():
 #     lumVal = str(luminosity)
     measures["l"] = lumVal
     print("Message published :lux=" + lumVal)
-    client.publish(FIWARE_APIKEY+"/myEdison/lux", payload=lumVal )
+    client.publish(TOKEN+ "/" + FIWARE_DEVICE + "/lux", payload=lumVal )
 
 
 def read_button():
@@ -48,7 +48,7 @@ def read_button():
     if (pulseVal != oldpulseVal): # Need to send
         measures["p"] = pulseVal
         print("New button state published :" + pulseVal)
-        client.publish(FIWARE_APIKEY+"/myEdison/button", payload=pulseVal )
+        client.publish(TOKEN+"/" + FIWARE_DEVICE + "/button", payload=pulseVal )
 
 
 # The callback called when the client receives a CONNACK response from the server.
@@ -56,7 +56,7 @@ def on_connect(client, userdata, rc):
     print( "Connected with result code " + str( rc ) )
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe( FIWARE_APIKEY+"/myEdison/cmd/SET" )
+    client.subscribe( TOKEN+"/" + FIWARE_DEVICE + "/cmd/SET" )
 
 
 # The callback called when a message is received from the server.
@@ -74,7 +74,7 @@ def on_message(client, userdata, msg):
         led.write(0)
     ack_payload = "cmdid|{0}#result|{1}".format(cmdid_id, state_wish)
     # Need to send ack to this topic "<api-key>/<device-id>/cmdexe/<cmd-name>"
-    client.publish(FIWARE_APIKEY+"/myEdison/cmdexe/SET", ack_payload)
+    client.publish(TOKEN+"/" + FIWARE_DEVICE + "/cmdexe/SET", ack_payload)
 
 
 
@@ -88,7 +88,7 @@ def main():
         client.on_connect = on_connect # Method called each time we reconnect (contains subscription to cmd channel)
         client.on_message = on_message # Callback when a command is received from subscription channel
         client.on_publish = on_publish # Callback when publish is ok
-        client.username_pw_set(FIWARE_APIKEY)
+        client.username_pw_set(TOKEN)
         client.connect( FIWARE_SERVER, FIWARE_PORT, FIWARE_TIMEOUT )
 
         lux_manager = repeated_timer(MEASURES_PERIOD, read_lux)             # Thread that poll lux sensor

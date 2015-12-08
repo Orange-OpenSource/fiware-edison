@@ -7,8 +7,8 @@
 #include <PubSubClient.h>
 
 #define UNKNOWN_STATE - 1
-#define FIWARE_APIKEY "xxxxxxxxxxxx"
-#define FIWARE_DEVICE "myEdison"
+#define TOKEN "xxxxxxxxxxxx"
+#define FIWARE_DEVICE "myEdison-mqtt"
 #define FIWARE_SERVER "hackathon.villatolosa.com"
 #define FIWARE_PORT  1883
 
@@ -21,9 +21,9 @@ int status = WL_IDLE_STATUS;
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
 
-char TOPIC_LUM[] = FIWARE_APIKEY "/myEdison/lux";
-char TOPIC_BUTTON[] = FIWARE_APIKEY "/myEdison/button";
-char TOPIC_SUBSCRIBE[] = FIWARE_APIKEY "/myEdison/cmd/SET";
+char TOPIC_LUM[] = TOKEN "/" FIWARE_DEVICE "/lux";
+char TOPIC_BUTTON[] = TOKEN "/" FIWARE_DEVICE "/button";
+char TOPIC_SUBSCRIBE[] = TOKEN "/" FIWARE_DEVICE "/cmd/SET";
 
 int oldPulse = UNKNOWN_STATE; // By default
 int nbLoop = 0;
@@ -122,7 +122,7 @@ void setLedStatus(char * value) {
 void sendCommandAck(char * cmd, char * cmdidValue, char * result) {
   char topic[400];
   memset(topic, 0, 400); // clean
-  strcat(topic, FIWARE_APIKEY);
+  strcat(topic, TOKEN);
   strcat(topic, "/");
   strcat(topic, FIWARE_DEVICE);
   strcat(topic, "/cmdexe/");
@@ -190,7 +190,7 @@ void connectToMqttAndSubscribeToSetCommand() {
   while (!client.connected()) {
     Serial.println("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect(FIWARE_APIKEY, FIWARE_APIKEY, NULL)) {
+    if (client.connect(TOKEN, TOKEN, NULL)) {
       Serial.println("connected");
       // Subscribe during the first connection and each reconnection 
       subscribeToCommandTopic();
