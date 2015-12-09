@@ -23,5 +23,5 @@ TOKEN = "xxx"
 
 * Run your programm :
 ```
-node main-mqtt.js
+node main.js
 ```
